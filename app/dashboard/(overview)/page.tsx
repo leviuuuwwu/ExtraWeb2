@@ -16,6 +16,7 @@ export default async function Page() {
   const {
     numberOfInvoices,
     numberOfCustomers,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     totalPaidInvoices,
     totalPendingInvoices,
   } = await fetchCardData();
@@ -25,6 +26,15 @@ export default async function Page() {
       <h1 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
         Dashboard
       </h1>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <Suspense fallback={<CardsSkeleton />}>
+            <CardWrapper />
+          </Suspense>
+          <Card title="Pending" value={totalPendingInvoices} type="pending" />
+          <Card title="Paid" value={totalPaidInvoices} type="pending" />
+          <Card title="Total Invoices" value={numberOfInvoices} type="invoices" />
+          <Card title="Total Customers" value={numberOfCustomers} type="customers" />
+        </div>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         <Suspense fallback={<CardsSkeleton />}>
           <CardWrapper />

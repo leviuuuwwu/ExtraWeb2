@@ -58,7 +58,7 @@ export async function createInvoice(formData: FormData): Promise<void> {
   redirect('/dashboard/invoices');
 }
 
-export function DeleteInvoice({ id }: { id: string }) {
+export async function DeleteInvoice({ id }: { id: string }) {
   const deleteInvoiceWithId = deleteInvoiceAction.bind(null, id); 
   
   return (

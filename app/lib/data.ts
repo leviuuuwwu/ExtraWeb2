@@ -10,13 +10,16 @@ import {
 import { formatCurrency } from './utils';
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const data = await sql<LatestInvoiceRaw[]>`
   SELECT invoices.amount, customers.name, customers.image_url, customers.email
   FROM invoices
   JOIN customers ON invoices.customer_id = customers.id
   ORDER BY invoices.date DESC
   LIMIT 5`;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const invoiceCountPromise = sql`SELECT COUNT(*) FROM invoices`;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const customerCountPromise = sql`SELECT COUNT(*) FROM customers`;
 
 export async function fetchRevenue() {
@@ -168,6 +171,7 @@ export async function fetchInvoiceById(id: string) {
       amount: invoice.amount / 100,
     }));
 
+    console.log(invoice);
     return invoice[0];
   } catch (error) {
     console.error('Database Error:', error);
