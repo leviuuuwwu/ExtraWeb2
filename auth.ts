@@ -5,7 +5,8 @@ import { z } from 'zod';
 import type { User } from '@/app/lib/definitions';
 import bcrypt from 'bcryptjs';
 import postgres from 'postgres';
-
+ 
+export const runtime = 'nodejs'
 
  
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
