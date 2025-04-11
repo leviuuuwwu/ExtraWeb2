@@ -9,6 +9,7 @@ import {
 } from './definitions';
 import { formatCurrency } from './utils';
 
+
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const data = await sql<LatestInvoiceRaw[]>`
@@ -161,6 +162,7 @@ export async function fetchInvoiceById(id: string) {
         invoices.customer_id,
         invoices.amount,
         invoices.status
+        invoices.date
       FROM invoices
       WHERE invoices.id = ${id};
     `;
