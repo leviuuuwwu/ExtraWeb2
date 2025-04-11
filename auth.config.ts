@@ -1,5 +1,6 @@
 import type { NextAuthConfig } from 'next-auth';
- 
+export { auth as middleware } from './auth'; 
+
 export const authConfig = {
   pages: {
     signIn: '/login',
